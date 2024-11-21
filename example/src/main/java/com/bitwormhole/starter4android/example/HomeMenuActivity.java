@@ -6,11 +6,11 @@ import androidx.annotation.Nullable;
 
 import com.bitwormhole.starter4a.StarterActivity;
 
-public class StartupActivity extends StarterActivity {
+public class HomeMenuActivity extends StarterActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_startup);
+        setContentView(R.layout.layout_menu);
     }
 }

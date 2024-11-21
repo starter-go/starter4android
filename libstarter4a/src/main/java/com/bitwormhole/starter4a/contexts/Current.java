@@ -1,7 +1,12 @@
 package com.bitwormhole.starter4a.contexts;
 
+import android.content.Context;
+
+import com.bitwormhole.starter4j.base.StarterException;
+
 public class Current {
 
+    private Context context;
     private Framework framework;
     private App app;
     private User user;
@@ -9,6 +14,24 @@ public class Current {
     private Document document;
 
     public Current() {
+    }
+
+    public static Current getInstance(Context ctx) {
+        Context c2 = ctx.getApplicationContext();
+        CurrentHolder holder = c2.getSystemService(CurrentHolder.class);
+        if (holder == null) {
+            throw new StarterException("cannot getSystemService with name: " + CurrentHolder.class.getName());
+        }
+        return holder.getCurrent();
+    }
+
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     public Framework getFramework() {

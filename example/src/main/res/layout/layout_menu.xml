@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MenuActivity">
+    tools:context=".HomeMenuActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -25,6 +25,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="try throw err" />
+
+    <Button
+        android:id="@+id/button_surface_ui_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Surface UI Demo" />
 
     <Space
         android:layout_width="match_parent"

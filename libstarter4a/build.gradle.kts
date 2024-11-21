@@ -7,7 +7,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 25
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -30,10 +30,10 @@ android {
 
 dependencies {
 
-    api("com.bitwormhole.starter4j:starter4j-starter:0.0.1-SNAPSHOT")
-    api("com.bitwormhole.starter4j:starter4j-vlog:0.0.1-SNAPSHOT")
-    api("com.bitwormhole.starter4j:starter4j-vlog-android:0.0.1-SNAPSHOT")
-
+    api("com.bitwormhole.starter4j:starter4j-starter:0.0.1-r4-snapshot")
+    api("com.bitwormhole.starter4j:starter4j-stopper:0.0.1-r4-snapshot")
+    api("com.bitwormhole.starter4j:starter4j-vlog:0.0.1-r4-snapshot")
+    api("com.bitwormhole.starter4j:starter4j-vlog-android:0.0.1-r4-snapshot")
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")

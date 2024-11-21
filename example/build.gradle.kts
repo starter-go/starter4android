@@ -9,8 +9,8 @@ android {
 
     defaultConfig {
         applicationId = "com.bitwormhole.starter4android.example"
-        minSdk = 25
-        targetSdk = 25
+        minSdk = 26
+        targetSdk = 26
         versionCode = 1
         versionName = "1.0"
 
@@ -46,9 +46,11 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "application.properties"
         }
     }
 }
+
 
 dependencies {
 
