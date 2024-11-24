@@ -8,6 +8,7 @@ import android.os.IBinder;
 import androidx.annotation.Nullable;
 
 import com.bitwormhole.starter4a.contexts.Current;
+import com.bitwormhole.starter4a.settings.SettingManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,16 +33,22 @@ public final class StarterService extends Service {
         }
 
         @Override
-        public LocalAPI getLocalAPI(String name) {
-            logger.info("getLocalAPI({})", name);
+        public <T extends LocalAPI> T getLocalAPI(Class<T> t) {
             return null;
         }
 
         @Override
-        public RemoteAPI getRemoteAPI(String name) {
-            logger.info("getRemoteAPI({})", name);
+        public <T extends RemoteAPI> T getRemoteAPI(Class<T> t) {
             return null;
         }
+
+        @Override
+        public SettingManager getSettingManager() {
+            return null;
+        }
+
+
+
 
         @Override
         public Current current() {

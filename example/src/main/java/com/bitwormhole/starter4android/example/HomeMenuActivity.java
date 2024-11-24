@@ -1,6 +1,8 @@
 package com.bitwormhole.starter4android.example;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -12,5 +14,18 @@ public class HomeMenuActivity extends StarterActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_menu);
+
+        this.setupButton(R.id.button_surface_ui_demo, SurfaceDemoActivity.class);
+    }
+
+    private void setupButton(int id, View.OnClickListener l) {
+        findViewById(id).setOnClickListener(l);
+    }
+
+    private void setupButton(int id, Class<?> targetActivityClass) {
+        setupButton(id, (v) -> {
+            Intent i = new Intent(this, targetActivityClass);
+            this.startActivity(i);
+        });
     }
 }

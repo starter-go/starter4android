@@ -29,7 +29,8 @@ public class StarterServiceClient extends FrontLifeBase {
             StarterBinder b = (StarterBinder) iBinder;
             BinderListener l = binderListener;
             if (b != null) {
-                b.getLocalAPI("/starter/service/binder/connected");
+                // b.getLocalAPI("/starter/service/binder/connected");
+                b.getLocalAPI(LocalAPI.class);
             }
             if (b != null && l != null && name != null) {
                 l.onBind(name, b);
@@ -42,7 +43,8 @@ public class StarterServiceClient extends FrontLifeBase {
             BinderListener l = binderListener;
             StarterBinder b = binder;
             if (b != null) {
-                b.getLocalAPI("/starter/service/binder/disconnected");
+                //  b.getLocalAPI("/starter/service/binder/disconnected");
+                b.getLocalAPI(LocalAPI.class);
             }
             if (l != null && name != null) {
                 l.onUnbind(name);

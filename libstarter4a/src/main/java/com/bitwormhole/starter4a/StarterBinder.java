@@ -3,14 +3,17 @@ package com.bitwormhole.starter4a;
 import android.os.IBinder;
 
 import com.bitwormhole.starter4a.contexts.Current;
+import com.bitwormhole.starter4a.settings.SettingManager;
 
 public interface StarterBinder {
 
     IBinder binder();
 
-    LocalAPI getLocalAPI(String name);
+    <T extends LocalAPI> T getLocalAPI(Class<T> t);
 
-    RemoteAPI getRemoteAPI(String name);
+    <T extends RemoteAPI> T getRemoteAPI(Class<T> t);
+
+    SettingManager getSettingManager();
 
     Current current();
 

@@ -5,8 +5,8 @@ import com.bitwormhole.starter4j.Starter;
 import com.bitwormhole.starter4j.application.Module;
 import com.bitwormhole.starter4j.application.ModuleBuilder;
 
-import com.bitwormhole.starter4a.config.ConfigThisModuleComponents;
-import com.bitwormhole.starter4j.stopper.Stopper;
+import com.bitwormhole.starter4a.config.ConfigStarter4aComponents;
+
 
 final class ThisModule {
 
@@ -23,7 +23,7 @@ final class ThisModule {
         mb.setRevision(theModuleRev);
 
         mb.setResources(LibStarter4aEmbeddedRes.res());
-        mb.setComponents(ConfigThisModuleComponents.func());
+        mb.setComponents(ConfigStarter4aComponents.func());
 
         mb.depend(Starter.module());
         // mb.depend(Stopper.module());

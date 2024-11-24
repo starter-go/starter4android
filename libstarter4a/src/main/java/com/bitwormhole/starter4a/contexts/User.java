@@ -4,6 +4,7 @@ package com.bitwormhole.starter4a.contexts;
 import com.bitwormhole.starter4j.base.SafeMode;
 
 import java.nio.file.Path;
+import com.bitwormhole.starter4a.DataScope;
 
 public final class User extends ScopeContext {
 
@@ -21,7 +22,7 @@ public final class User extends ScopeContext {
 
 
     public User(App _owner, SafeMode _mode) {
-        super(_owner, _mode);
+        super(_owner,DataScope.USER, _mode);
         this.ownerApp = _owner;
     }
 

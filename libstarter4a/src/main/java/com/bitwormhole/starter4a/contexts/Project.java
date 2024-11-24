@@ -3,6 +3,7 @@ package com.bitwormhole.starter4a.contexts;
 import com.bitwormhole.starter4j.base.SafeMode;
 
 import java.nio.file.Path;
+import com.bitwormhole.starter4a.DataScope;
 
 public final class Project extends ScopeContext {
 
@@ -14,7 +15,7 @@ public final class Project extends ScopeContext {
     private String description;
 
     public Project(User _owner, SafeMode _mode) {
-        super(_owner, _mode);
+        super(_owner,DataScope.PROJECT, _mode);
         this.owner = _owner;
     }
 

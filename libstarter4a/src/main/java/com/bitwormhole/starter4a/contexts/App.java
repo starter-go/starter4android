@@ -5,6 +5,8 @@ import com.bitwormhole.starter4j.base.SafeMode;
 
 import java.nio.file.Path;
 
+import com.bitwormhole.starter4a.DataScope;
+
 public class App extends ScopeContext {
 
     private final Framework framework;
@@ -22,7 +24,7 @@ public class App extends ScopeContext {
 
 
     public App(Framework _parent, SafeMode _mode) {
-        super(_parent, _mode);
+        super(_parent, DataScope.APP, _mode);
         this.framework = _parent;
     }
 

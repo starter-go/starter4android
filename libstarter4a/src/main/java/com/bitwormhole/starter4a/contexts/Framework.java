@@ -3,6 +3,7 @@ package com.bitwormhole.starter4a.contexts;
 
 import com.bitwormhole.starter4j.base.SafeMode;
 import com.bitwormhole.starter4j.application.Module;
+import com.bitwormhole.starter4a.DataScope;
 
 public final class Framework extends ScopeContext {
 
@@ -11,7 +12,7 @@ public final class Framework extends ScopeContext {
     private Customizer customizer;
 
     public Framework(SafeMode _mode) {
-        super(null, _mode);
+        super(null, DataScope.FRAMEWORK, _mode);
     }
 
     public Module getMainModule() {
