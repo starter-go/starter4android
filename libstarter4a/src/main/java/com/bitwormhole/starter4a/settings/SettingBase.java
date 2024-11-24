@@ -2,20 +2,15 @@ package com.bitwormhole.starter4a.settings;
 
 import com.bitwormhole.starter4a.DataScope;
 
-public final class SettingHolder<T extends Setting> {
+public class SettingBase implements Setting {
 
-    private T setting;
     private DataScope scope;
 
-    public SettingHolder() {
+    public SettingBase() {
     }
 
-    public T getSetting() {
-        return setting;
-    }
-
-    public void setSetting(T setting) {
-        this.setting = setting;
+    public SettingBase(DataScope s) {
+        this.scope = s;
     }
 
     public DataScope getScope() {
@@ -25,5 +20,4 @@ public final class SettingHolder<T extends Setting> {
     public void setScope(DataScope scope) {
         this.scope = scope;
     }
-
 }

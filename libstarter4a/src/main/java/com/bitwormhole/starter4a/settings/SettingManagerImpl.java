@@ -43,6 +43,11 @@ public class SettingManagerImpl implements SettingManager, LifeCycle {
     }
 
     @Override
+    public boolean exists(Class<? extends Setting> t, DataScope s) {
+        return false;
+    }
+
+    @Override
     public void set(Setting s, DataScope scope) {
 
     }

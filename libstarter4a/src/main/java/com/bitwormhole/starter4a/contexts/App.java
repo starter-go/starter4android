@@ -12,7 +12,6 @@ public class App extends ScopeContext {
     private final Framework framework;
     private ApplicationContext context;
 
-    private Path folder;
 
     private boolean started;
     private boolean starting;
@@ -82,14 +81,6 @@ public class App extends ScopeContext {
 
     public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Path getFolder() {
-        return folder;
-    }
-
-    public void setFolder(Path folder) {
-        this.folder = folder;
     }
 
 

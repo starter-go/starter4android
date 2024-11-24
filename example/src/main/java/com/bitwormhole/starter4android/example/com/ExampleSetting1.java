@@ -2,11 +2,12 @@ package com.bitwormhole.starter4android.example.com;
 
 import com.bitwormhole.starter4a.DataScope;
 import com.bitwormhole.starter4a.settings.Setting;
+import com.bitwormhole.starter4a.settings.SettingBase;
 import com.bitwormhole.starter4a.settings.SettingRegistration;
 import com.bitwormhole.starter4a.settings.SettingRegistrationListBuilder;
 import com.bitwormhole.starter4a.settings.SettingRegistry;
 
-public class ExampleSetting1 implements Setting, SettingRegistry {
+public class ExampleSetting1 extends SettingBase implements Setting, SettingRegistry {
 
     @Override
     public SettingRegistration[] listSettingRegistrations() {

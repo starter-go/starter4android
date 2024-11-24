@@ -3,19 +3,19 @@ package com.bitwormhole.starter4a.contexts;
 import com.bitwormhole.starter4j.base.SafeMode;
 
 import java.nio.file.Path;
+
 import com.bitwormhole.starter4a.DataScope;
 
 public final class Project extends ScopeContext {
 
     private final User owner;
-    private Path folder;
 
     private String name;
     private String title;
     private String description;
 
     public Project(User _owner, SafeMode _mode) {
-        super(_owner,DataScope.PROJECT, _mode);
+        super(_owner, DataScope.PROJECT, _mode);
         this.owner = _owner;
     }
 
@@ -41,14 +41,6 @@ public final class Project extends ScopeContext {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Path getFolder() {
-        return folder;
-    }
-
-    public void setFolder(Path folder) {
-        this.folder = folder;
     }
 
     public User getOwner() {
