@@ -15,6 +15,7 @@ public class SettingManagerImpl implements SettingManager, LifeCycle {
     final static Logger logger = LoggerFactory.getLogger(SettingManagerImpl.class);
 
     private ApplicationContext context;
+    private final Map<String, MyItem> table;
 
     public SettingManagerImpl() {
     }
@@ -28,12 +29,12 @@ public class SettingManagerImpl implements SettingManager, LifeCycle {
     }
 
     @Override
-    public <T extends Setting> T get(Class<T> t, DataScope scope) {
+    public <T extends Setting> T load(Class<T> t, DataScope scope) {
         return null;
     }
 
     @Override
-    public <T extends Setting> T get(Class<T> t) {
+    public <T extends Setting> T load(Class<T> t) {
         return null;
     }
 
@@ -48,8 +49,43 @@ public class SettingManagerImpl implements SettingManager, LifeCycle {
     }
 
     @Override
-    public void set(Setting s, DataScope scope) {
+    public void store(Setting s, DataScope scope) {
 
+    }
+
+    private MyItem findItem(Class<? extends Setting> t, boolean create) {
+        String key = t.getName();
+        MyItem item = this.table.get(key);
+        if (item==null &&   create) {
+
+        }
+        return item  ;
+    }
+
+    private static class MySaver {
+    }
+
+    private static class MyLoader {
+    }
+
+    private static class MyItem {
+        Class<? extends Setting> type;
+
+        boolean hasScopeDocument;
+        boolean hasScopeProject;
+        boolean hasScopeUser;
+        boolean hasScopeApp;
+        boolean hasScopeFramework;
+
+    }
+
+    private static class MyLocater {
+        Class<? extends Setting> type;
+        Scope scope;
+        Current current;
+
+        Path locate() {
+        }
     }
 
     private void reload() {
