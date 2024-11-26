@@ -6,31 +6,71 @@
     android:orientation="vertical"
     tools:context=".TrySettingsActivity">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Starter4a Example"
+        android:background="#851717"
+        android:padding="10dp"
+        android:text="Try Settings"
         android:textAlignment="center"
+        android:textColor="#E7DDDD"
         android:textSize="25dp" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp" />
 
+
+    <!-- enabled  -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="example"
-        android:textAlignment="center" />
+        android:text="BOOL" />
+
+
+    <CheckBox
+        android:id="@+id/input_enabled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="enabled" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="10dp" />
+
+
+    <!-- name  -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="name" />
+
+    <EditText
+        android:id="@+id/input_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <!-- value  -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="value" />
+
+    <SeekBar
+        android:id="@+id/input_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:min="0" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
 </LinearLayout>

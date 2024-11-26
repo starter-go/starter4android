@@ -88,12 +88,17 @@ final class SettingManagerCore {
         String text = gs.toJson(sh.getSetting());
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
         OpenOption oo;
-        if (Files.exists(location.file)) {
+        Path file = location.file;
+        Path dir = file.getParent();
+        if (!Files.exists(dir)) {
+            Files.createDirectories(dir);
+        }
+        if (Files.exists(file)) {
             oo = StandardOpenOption.TRUNCATE_EXISTING;
         } else {
             oo = StandardOpenOption.CREATE_NEW;
         }
-        Files.write(location.file, data, oo);
+        Files.write(file, data, oo);
     }
 
     private MyItem findItem(Class<? extends Setting> t, boolean create) {
