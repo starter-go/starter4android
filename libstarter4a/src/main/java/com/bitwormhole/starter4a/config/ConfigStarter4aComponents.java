@@ -6,7 +6,8 @@ import com.bitwormhole.starter4a.BackLifeManager;
 import com.bitwormhole.starter4a.contexts.AppCurrentHolderCom;
 import com.bitwormhole.starter4a.contexts.CurrentHolder;
 import com.bitwormhole.starter4a.settings.SettingManager;
-import com.bitwormhole.starter4a.settings.SettingManagerImpl;
+import com.bitwormhole.starter4a.settings.SettingManagerFacade;
+import com.bitwormhole.starter4j.application.ApplicationContext;
 import com.bitwormhole.starter4j.application.ComponentRegistry;
 import com.bitwormhole.starter4j.application.ComponentRegistryFunc;
 import com.bitwormhole.starter4j.application.ComponentTemplate;
@@ -67,11 +68,14 @@ public final class ConfigStarter4aComponents implements ComponentRegistryFunc {
     }
 
     private void comSettingManager(ComponentTemplate ct) {
-        ComponentTemplate.RegistrationT<SettingManagerImpl> rt = ct.component(SettingManagerImpl.class);
+        final ComponentSelector cs = ComponentSelector.getInstance();
+        final ComponentTemplate.RegistrationT<SettingManagerFacade> rt = ct.component(SettingManagerFacade.class);
         rt.addAlias(SettingManager.class);
-        rt.onNew(SettingManagerImpl::new);
+        rt.onNew(SettingManagerFacade::new);
         rt.onInject((ext, o) -> {
-            o.setContext(ext.getContext());
+            CurrentHolder ch = (CurrentHolder) ext.getComponent(cs.ID(CurrentHolder.class));
+            ApplicationContext ctx = ext.getContext();
+            o.init(ctx, ch);
         });
         rt.register();
     }

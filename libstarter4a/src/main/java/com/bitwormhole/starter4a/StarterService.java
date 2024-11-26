@@ -34,20 +34,20 @@ public final class StarterService extends Service {
 
         @Override
         public <T extends LocalAPI> T getLocalAPI(Class<T> t) {
-            return null;
+            APIManager apis = this.current().getApp().getApis();
+            return apis.findLocalAPI(null, t);
         }
 
         @Override
         public <T extends RemoteAPI> T getRemoteAPI(Class<T> t) {
-            return null;
+            APIManager apis = this.current().getApp().getApis();
+            return apis.findRemoteAPI(null, t);
         }
 
         @Override
         public SettingManager getSettingManager() {
-            return null;
+            return this.current().getApp().getSettings();
         }
-
-
 
 
         @Override

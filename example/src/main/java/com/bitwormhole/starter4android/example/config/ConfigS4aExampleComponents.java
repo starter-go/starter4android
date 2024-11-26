@@ -2,7 +2,8 @@ package com.bitwormhole.starter4android.example.config;
 
 import com.bitwormhole.starter4a.APIRegistry;
 import com.bitwormhole.starter4a.settings.SettingRegistry;
-import com.bitwormhole.starter4android.example.com.ExampleApi1;
+import com.bitwormhole.starter4android.example.com.ExampleLocalApi1;
+import com.bitwormhole.starter4android.example.com.ExampleRemoteApi1;
 import com.bitwormhole.starter4android.example.com.ExampleSetting1;
 import com.bitwormhole.starter4j.application.ComponentRegistryFunc;
 import com.bitwormhole.starter4j.application.ComponentTemplate;
@@ -16,16 +17,27 @@ public final class ConfigS4aExampleComponents {
         final ConfigS4aExampleComponents cfg = new ConfigS4aExampleComponents();
         final ComponentRegistryFunc fn = (cr) -> {
             final ComponentTemplate ct = new ComponentTemplate(cr);
-            cfg.comExampleAPI(ct);
+            cfg.comExampleRemoteAPI(ct);
+            cfg.comExampleLocalAPI(ct);
             cfg.comExampleSetting(ct);
         };
         return fn;
     }
 
-    private void comExampleAPI(ComponentTemplate ct) {
-        ComponentTemplate.RegistrationT<ExampleApi1> rt = ct.component(ExampleApi1.class);
+    private void comExampleLocalAPI(ComponentTemplate ct) {
+        ComponentTemplate.RegistrationT<ExampleLocalApi1> rt = ct.component(ExampleLocalApi1.class);
         rt.addClass(APIRegistry.class);
-        rt.onNew(ExampleApi1::new);
+        rt.onNew(ExampleLocalApi1::new);
+        rt.onInject((ext, o) -> {
+            // o.set
+        });
+        rt.register();
+    }
+
+    private void comExampleRemoteAPI(ComponentTemplate ct) {
+        ComponentTemplate.RegistrationT<ExampleRemoteApi1> rt = ct.component(ExampleRemoteApi1.class);
+        rt.addClass(APIRegistry.class);
+        rt.onNew(ExampleRemoteApi1::new);
         rt.onInject((ext, o) -> {
             // o.set
         });

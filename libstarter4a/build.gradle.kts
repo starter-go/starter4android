@@ -34,6 +34,7 @@ dependencies {
     api("com.bitwormhole.starter4j:starter4j-vlog:0.0.1-r5-snapshot")
     api("com.bitwormhole.starter4j:starter4j-vlog-android:0.0.1-r5-snapshot")
 
+    implementation("com.google.code.gson:gson:2.8.2")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     testImplementation("junit:junit:4.13.2")

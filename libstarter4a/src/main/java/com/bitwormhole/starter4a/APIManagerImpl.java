@@ -1,6 +1,6 @@
 package com.bitwormhole.starter4a;
 
-import com.bitwormhole.starter4a.settings.SettingManagerImpl;
+
 import com.bitwormhole.starter4j.application.ApplicationContext;
 import com.bitwormhole.starter4j.application.Life;
 import com.bitwormhole.starter4j.application.LifeCycle;
@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class APIManagerImpl implements APIManager, LifeCycle {
 
-    final static Logger logger = LoggerFactory.getLogger(SettingManagerImpl.class);
+    final static Logger logger = LoggerFactory.getLogger(APIManagerImpl.class);
 
     private ApplicationContext context;
 
@@ -146,6 +146,9 @@ public class APIManagerImpl implements APIManager, LifeCycle {
     }
 
 
+    /**
+     * @noinspection unchecked
+     */
     @Override
     public <T extends RemoteAPI> T findRemoteAPI(String name, Class<T> t) {
         final String key = keyFor(name, t);
@@ -160,6 +163,9 @@ public class APIManagerImpl implements APIManager, LifeCycle {
         return (T) remote;
     }
 
+    /**
+     * @noinspection unchecked
+     */
     @Override
     public <T extends LocalAPI> T findLocalAPI(String name, Class<T> t) {
         final String key = keyFor(name, t);

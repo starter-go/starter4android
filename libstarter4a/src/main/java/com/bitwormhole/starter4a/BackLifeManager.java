@@ -3,6 +3,7 @@ package com.bitwormhole.starter4a;
 import com.bitwormhole.starter4a.contexts.App;
 import com.bitwormhole.starter4a.contexts.Current;
 import com.bitwormhole.starter4a.contexts.CurrentHolder;
+import com.bitwormhole.starter4a.settings.SettingManager;
 import com.bitwormhole.starter4j.application.ApplicationContext;
 import com.bitwormhole.starter4j.application.Life;
 import com.bitwormhole.starter4j.application.LifeCycle;
@@ -14,6 +15,16 @@ public final class BackLifeManager implements LifeCycle {
     private ApplicationContext context;
 
     public BackLifeManager() {
+    }
+
+    private static SettingManager getSettingManager(ApplicationContext ac) {
+        String sel = "#" + SettingManager.class.getName();
+        return ac.selectComponent(sel, SettingManager.class);
+    }
+
+    private static APIManager getAPIManager(ApplicationContext ac) {
+        String sel = "#" + APIManager.class.getName();
+        return ac.selectComponent(sel, APIManager.class);
     }
 
     @Override
@@ -50,6 +61,9 @@ public final class BackLifeManager implements LifeCycle {
         final long now = System.currentTimeMillis();
         final Current current = currentHolder.getCurrent();
         final App app = current.getApp();
+
+        app.setApis(getAPIManager(this.context));
+        app.setSettings(getSettingManager(this.context));
         app.setStartedAt(now);
         app.setStarted(true);
 

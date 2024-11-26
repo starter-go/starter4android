@@ -4,47 +4,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeMenuActivity">
+    tools:context=".TryApiActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#871616"
-        android:padding="7dp"
-        android:text="Starter4a Example Menu"
+        android:text="Starter4a Example"
         android:textAlignment="center"
-        android:textColor="#fefefe" />
+        android:textSize="25dp" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp" />
 
-    <Button
-        android:id="@+id/button_try_throw"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="try throw err" />
-
-    <Button
-        android:id="@+id/button_surface_ui_demo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Surface UI Demo" />
-
-    <Button
-        android:id="@+id/button_try_api"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Try API" />
-
-    <Button
-        android:id="@+id/button_try_settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Try Settings" />
+        android:text="example"
+        android:textAlignment="center" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/button_try_remote_api_err"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="try remote api error" />
+
+    <Button
+        android:id="@+id/button_try_remote_api_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="try remote api ok" />
+
+    <Button
+        android:id="@+id/button_try_local_api_err"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="try local api error" />
+
+    <Button
+        android:id="@+id/button_try_local_api_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="try local api ok" />
+
 
 </LinearLayout>

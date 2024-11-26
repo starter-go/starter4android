@@ -1,5 +1,7 @@
 package com.bitwormhole.starter4a.contexts;
 
+import com.bitwormhole.starter4a.APIManager;
+import com.bitwormhole.starter4a.settings.SettingManager;
 import com.bitwormhole.starter4j.application.ApplicationContext;
 import com.bitwormhole.starter4j.base.SafeMode;
 
@@ -11,6 +13,9 @@ public class App extends ScopeContext {
 
     private final Framework framework;
     private ApplicationContext context;
+
+    private SettingManager settings;
+    private APIManager apis;
 
 
     private boolean started;
@@ -92,6 +97,22 @@ public class App extends ScopeContext {
         this.context = context;
     }
 
+
+    public APIManager getApis() {
+        return apis;
+    }
+
+    public void setApis(APIManager apis) {
+        this.apis = apis;
+    }
+
+    public SettingManager getSettings() {
+        return settings;
+    }
+
+    public void setSettings(SettingManager settings) {
+        this.settings = settings;
+    }
 
     public Framework getFramework() {
         return framework;

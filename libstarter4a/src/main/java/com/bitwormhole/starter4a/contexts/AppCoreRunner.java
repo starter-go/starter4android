@@ -34,7 +34,6 @@ public class AppCoreRunner implements Runnable {
         String[] args = {};
         current.setApp(app);
         app.setFolder(getAppPrivateDir());
-
         Initializer i = Starter.init(args);
         i.setMainModule(mm);
         this.bindAttrCurrentHolder(i);

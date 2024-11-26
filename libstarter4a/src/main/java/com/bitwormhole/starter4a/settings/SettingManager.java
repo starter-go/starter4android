@@ -1,17 +1,14 @@
 package com.bitwormhole.starter4a.settings;
 
 import com.bitwormhole.starter4a.DataScope;
+import com.bitwormhole.starter4a.contexts.Current;
+
+import java.io.IOException;
 
 public interface SettingManager {
 
-    <T extends Setting> T load(Class<T> t, DataScope scope);
+    void load(SettingHolder h) throws IOException;
 
-    <T extends Setting> T load(Class<T> t);
-
-    boolean exists(Class<? extends Setting> t);
-
-    boolean exists(Class<? extends Setting> t, DataScope s);
-
-    void store(Setting s, DataScope scope);
+    void save(SettingHolder h) throws IOException;
 
 }
