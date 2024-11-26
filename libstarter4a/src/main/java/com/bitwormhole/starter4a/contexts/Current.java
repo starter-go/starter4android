@@ -13,7 +13,10 @@ public class Current {
     private Project project;
     private Document document;
 
+    private ScopeContextFactory factory;
+
     public Current() {
+        this.factory = new ScopeContextFactoryImpl();
     }
 
     public static Current getInstance(Context ctx) {
@@ -72,5 +75,13 @@ public class Current {
 
     public void setDocument(Document document) {
         this.document = document;
+    }
+
+    public ScopeContextFactory getFactory() {
+        return factory;
+    }
+
+    public void setFactory(ScopeContextFactory factory) {
+        this.factory = factory;
     }
 }

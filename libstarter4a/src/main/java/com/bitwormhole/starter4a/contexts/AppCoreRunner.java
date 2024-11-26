@@ -28,7 +28,7 @@ public class AppCoreRunner implements Runnable {
 
         final Current current = this.currentHolder.getCurrent();
         Framework framework = current.getFramework();
-        App app = new App(framework, SafeMode.Safe);
+        App app = current.getFactory().createApp(current);
         Module mm = framework.getMainModule();
         Customizer customizer = framework.getCustomizer();
         String[] args = {};

@@ -56,7 +56,7 @@ public class CurrentWrapper {
 
         Framework framework = this.current.getFramework();
         if (framework == null) {
-            framework = new Framework(SafeMode.Safe);
+            framework = current.getFactory().createFramework(current, SafeMode.Safe);
             this.current.setFramework(framework);
         }
 
