@@ -15,6 +15,7 @@ public class HomeMenuActivity extends StarterActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_menu);
 
+        this.setupButton(R.id.button_surface_touch_demo, SurfaceTouchActivity.class);
         this.setupButton(R.id.button_surface_ui_demo, SurfaceDemoActivity.class);
         this.setupButton(R.id.button_try_api, TryApiActivity.class);
         this.setupButton(R.id.button_try_settings, TrySettingsActivity.class);

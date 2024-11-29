@@ -32,6 +32,12 @@
         android:text="Surface UI Demo" />
 
     <Button
+        android:id="@+id/button_surface_touch_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Surface Touch Demo" />
+
+    <Button
         android:id="@+id/button_try_api"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
