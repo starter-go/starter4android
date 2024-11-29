@@ -5,62 +5,43 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.bitwormhole.starter4j.application.tasks.PromiseBuilder;
-import com.bitwormhole.starter4j.application.tasks.PromiseContext;
-
-import java.util.concurrent.Executor;
-
 public class StarterActivity extends Activity {
 
-    private FrontLifeManager mLifeManager;
-    private PromiseContext mPromiseContext;
-    private StarterServiceClient mSSClient;
+    private FrontContext mFrontContext;
 
     public StarterActivity() {
     }
 
-    // 必须在 onCreate 执行之后，才能调用这个方法
-    public final StarterServiceClient getStarterServiceClient() {
-        return this.mSSClient;
-    }
-
-    public final FrontLifeManager getLifeManager() {
-        return mLifeManager;
-    }
-
-    public final <T> PromiseBuilder<T> createNewPromise(Class<T> t) {
-        PromiseBuilder<T> b = new PromiseBuilder<>();
-        b.setContext(new PromiseContext(this.mPromiseContext));
-        b.setType(t);
-        return b;
-    }
-
-    private static PromiseContext createPromiseContext() {
-        PromiseContext pc = new PromiseContext();
-        pc.setBackground(new DefaultPromiseBackground());
-        pc.setForeground(new DefaultPromiseForeground());
-        return pc;
+    public FrontContext getFrontContext() {
+        FrontContext fc = mFrontContext;
+        if (fc == null) {
+            throw new RuntimeException("getFrontContext without init");
+        }
+        return fc;
     }
 
     private void forMainLife(FrontLifeAbs.OnLifeListener listener) {
-        FrontLife ml = mLifeManager.getMain();
+        FrontLife ml = mFrontContext.getLifeManager().getMain();
         listener.OnLife(ml);
     }
 
+    private void init() {
+        FrontContext fc = mFrontContext;
+        if (fc != null) {
+            return;
+        }
+        FrontContextBuilder b = new FrontContextBuilder();
+        b.setActivity(this);
+        fc = b.create();
+        mFrontContext = fc;
+    }
 
     // handlers
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-        mPromiseContext = createPromiseContext();
-        mLifeManager = new FrontLifeManager();
-        mSSClient = new StarterServiceClient(this);
-
-        mLifeManager.add(mSSClient);
-
+        this.init();
         super.onCreate(savedInstanceState);
-
         forMainLife((ml) -> {
             ml.onCreate(savedInstanceState);
         });

@@ -34,7 +34,7 @@ public class SurfaceDemoActivity extends StarterActivity {
 
         mSurfaceView = findViewById(R.id.surface_view1);
 
-        FrontLifeManager lm = this.getLifeManager();
+        FrontLifeManager lm = this.getFrontContext().getLifeManager();
 
         SurfaceContextBuilder builder = new SurfaceContextBuilder();
         SurfaceContext sc = builder.getSurfaceContext();

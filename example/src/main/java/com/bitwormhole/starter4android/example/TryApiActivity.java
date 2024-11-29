@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import com.bitwormhole.starter4a.Errors;
 import com.bitwormhole.starter4a.StarterActivity;
 import com.bitwormhole.starter4a.StarterBinder;
+import com.bitwormhole.starter4a.StarterBinderObserver;
 import com.bitwormhole.starter4android.example.com.ExampleLocalApi1;
 import com.bitwormhole.starter4android.example.com.ExampleRemoteApi1;
 
@@ -20,20 +21,26 @@ public class TryApiActivity extends StarterActivity {
 
     final static Logger logger = LoggerFactory.getLogger(TryApiActivity.class);
 
+    private StarterBinder mBinder;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_try_api);
 
-
         findViewById(R.id.button_try_remote_api_err).setOnClickListener(this::handleClickRemoteApiError);
         findViewById(R.id.button_try_remote_api_ok).setOnClickListener(this::handleClickRemoteApiOk);
         findViewById(R.id.button_try_local_api_err).setOnClickListener(this::handleClickLocalApiError);
         findViewById(R.id.button_try_local_api_ok).setOnClickListener(this::handleClickLocalApiOk);
+
+        StarterBinderObserver.observe(this).setOnBegin((binderHolder) -> {
+            mBinder = binderHolder.getBinder();
+        });
     }
 
     private StarterBinder getStarterBinder() {
-        return this.getStarterServiceClient().getBinder();
+        // return this . getFrontContext() .getClient().getBinder();
+        return this.mBinder;
     }
 
     private void handleClickRemoteApiError(View view) {

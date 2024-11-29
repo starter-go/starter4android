@@ -18,6 +18,7 @@ public class HomeMenuActivity extends StarterActivity {
         this.setupButton(R.id.button_surface_ui_demo, SurfaceDemoActivity.class);
         this.setupButton(R.id.button_try_api, TryApiActivity.class);
         this.setupButton(R.id.button_try_settings, TrySettingsActivity.class);
+        this.setupButton(R.id.button_try_throw, TryThrowErrorActivity.class);
     }
 
     private void setupButton(int id, View.OnClickListener l) {

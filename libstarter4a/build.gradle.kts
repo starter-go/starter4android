@@ -1,5 +1,6 @@
 plugins {
-    id("com.android.library")
+    id("com.android.library") version "8.7.2"
+    id("maven-publish")
 }
 
 android {
@@ -30,9 +31,9 @@ android {
 
 dependencies {
 
-    api("com.bitwormhole.starter4j:starter4j-starter:0.0.1-r5-snapshot")
-    api("com.bitwormhole.starter4j:starter4j-vlog:0.0.1-r5-snapshot")
-    api("com.bitwormhole.starter4j:starter4j-vlog-android:0.0.1-r5-snapshot")
+    api("com.bitwormhole.starter4j:starter4j-starter:0.0.2-r6-snapshot")
+    api("com.bitwormhole.starter4j:starter4j-vlog:0.0.2-r6-snapshot")
+    api("com.bitwormhole.starter4j:starter4j-vlog-android:0.0.2-r6-snapshot")
 
     implementation("com.google.code.gson:gson:2.8.2")
     implementation("androidx.appcompat:appcompat:1.7.0")

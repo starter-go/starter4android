@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TryThrowErrorActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#851717"
+        android:padding="10dp"
+        android:text="Try Throw Errors"
+        android:textAlignment="center"
+        android:textColor="#E7DDDD"
+        android:textSize="25dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <Button
+        android:id="@+id/button_bg_throw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="try background throw" />
+
+    <Button
+        android:id="@+id/button_fg_throw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="try foreground throw" />
+
+
+    <Button
+        android:id="@+id/button_handle_error_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="handle error with log" />
+
+    <Button
+        android:id="@+id/button_handle_error_toast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="handle error with toast" />
+
+    <Button
+        android:id="@+id/button_handle_error_alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="handle error with alert" />
+
+    <Button
+        android:id="@+id/button_handle_error_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="handle error with all" />
+
+</LinearLayout>

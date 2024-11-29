@@ -55,6 +55,8 @@ android {
 dependencies {
 
     implementation(project(":libstarter4a"))
+    api("com.bitwormhole.starter4j:starter4j-starter:0.0.2-r6-snapshot")
+
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")

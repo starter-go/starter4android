@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.bitwormhole.starter4a.StarterActivity;
 import com.bitwormhole.starter4a.StarterBinder;
+import com.bitwormhole.starter4a.StarterBinderObserver;
 import com.bitwormhole.starter4a.StarterServiceClient;
 import com.bitwormhole.starter4a.settings.SettingHolder;
 import com.bitwormhole.starter4a.settings.SettingManager;
@@ -39,16 +40,10 @@ public class TrySettingsActivity extends StarterActivity {
         mInputName = findViewById(R.id.input_name);
         mInputValue = findViewById(R.id.input_value);
 
-        this.getStarterServiceClient().setBinderListener(new StarterServiceClient.BinderListener() {
-            @Override
-            public void onBind(ComponentName componentName, StarterBinder b) {
-                mBinder = b;
-                TrySettingsActivity.this.loadSettings(b);
-            }
-
-            @Override
-            public void onUnbind(ComponentName componentName) {
-            }
+        StarterBinderObserver.observe(this).setOnBegin((binderHolder) -> {
+            StarterBinder b = binderHolder.getBinder();
+            mBinder = b;
+            TrySettingsActivity.this.loadSettings(b);
         });
     }
 

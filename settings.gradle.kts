@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 rootProject.name = "starter4android"
 include(":example")
 include(":libstarter4a")
+include(":example2")

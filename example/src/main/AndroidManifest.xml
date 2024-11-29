@@ -32,6 +32,7 @@
         <activity android:name=".SurfaceDemoActivity" />
         <activity android:name=".TryApiActivity" />
         <activity android:name=".TrySettingsActivity" />
+        <activity android:name=".TryThrowErrorActivity" />
 
     </application>
 
