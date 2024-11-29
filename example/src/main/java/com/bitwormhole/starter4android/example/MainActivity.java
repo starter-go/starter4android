@@ -8,13 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.bitwormhole.starter4a.Errors;
 import com.bitwormhole.starter4a.StarterActivity;
-import com.bitwormhole.starter4a.StarterBinder;
-import com.bitwormhole.starter4a.StarterServiceClient;
 import com.bitwormhole.starter4a.Startup;
-import com.bitwormhole.starter4a.Startup2;
-import com.bitwormhole.starter4a.contexts.Current;
-import com.bitwormhole.starter4j.application.tasks.Promise;
-import com.bitwormhole.starter4j.application.tasks.Result;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +26,7 @@ public class MainActivity extends StarterActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Startup2.start(this).Then((res) -> {
+        Startup.start(this).Then((res) -> {
             this.startHomeActivity();
             return null;
         }).Catch((res) -> {

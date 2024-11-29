@@ -1,112 +1,84 @@
 package com.bitwormhole.starter4a;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 
-import com.bitwormhole.starter4a.contexts.Current;
 import com.bitwormhole.starter4a.contexts.CurrentWrapper;
+import com.bitwormhole.starter4j.application.tasks.Promise;
+import com.bitwormhole.starter4j.application.tasks.PromiseContext;
 import com.bitwormhole.starter4j.application.tasks.Result;
-import com.bitwormhole.starter4j.base.StarterException;
 import com.bitwormhole.starter4j.base.Time;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Startup {
 
-    // private final MyInnerStarting mInner;
+    final static Logger logger = LoggerFactory.getLogger(Startup.class);
 
-    // private Startup(StarterActivity sa) {
-    //     mInner = new MyInnerStarting(sa);
-    // }
+    private Startup() {
+    }
 
-    // public static Startup init(StarterActivity ctx) {
-    //     return new Startup(ctx);
-    // }
+    public static Promise<StarterBinder> start(StarterActivity activity) {
+        return start(activity.getFrontContext());
+    }
 
-    // private static final class MyInnerStarting implements StarterServiceClient.BinderListener {
+    public static Promise<StarterBinder> start(FrontContext fc) {
+        final StarterBinderHolder holder = new StarterBinderHolder();
+        final InnerProc ip = new InnerProc(holder);
+        final PromiseContext pc = fc.getPromiseContext();
+        fc.getClient().addObserver(ip.getObserver());
+        final Promise<StarterBinder> promise = Promise.init(pc, StarterBinder.class).Try(() -> {
+            ip.run(fc.getActivity());
+            return new Result<>(holder.getBinder());
+        });
+        promise.start();
+        return promise;
+    }
 
-    //     private final StarterActivity mActivity;
-    //     private final StarterServiceClient mSSClient;
-    //     private final Context mContext;
+    private static class InnerProc {
 
+        final StarterBinderHolder holder;
 
-    //     private StarterBinder mBinder;
-    //     private Current mCurrent;
+        public InnerProc(StarterBinderHolder h) {
+            this.holder = h;
+        }
 
+        private StarterBinder waitForStarterBinderReady(int timeout) {
+            final int step = 333;
+            for (int ttl = timeout; ttl > 0; ttl -= step) {
+                StarterBinder binder = this.holder.getBinder();
+                if (binder != null) {
+                    return binder;
+                }
+                Time.sleep(step);
+            }
+            throw new RuntimeException("timeout: " + this + ".waitForStarterBinderReady()");
+        }
 
-    //     MyInnerStarting(StarterActivity sa) {
-    //         this.mActivity = sa;
-    //         this.mContext = sa;
-    //         this.mSSClient = new StarterServiceClient(sa);
-    //     }
+        void run(Context ctx) {
+            StarterBinder binder = this.waitForStarterBinderReady(10 * 1000);
+            CurrentWrapper cw = new CurrentWrapper(binder.current());
+            if (cw.isAppReady()) {
+                logger.info("Startup: ready");
+                return;
+            }
+            cw.initFramework();
+            cw.initApp();
+            try {
+                cw.initUserSession();
+                logger.info("Startup: ok");
+            } catch (Exception e) {
+                Errors.handleError(ctx, e);
+            }
+            logger.info("Startup: done");
+        }
 
-    //     @Override
-    //     public void onBind(ComponentName componentName, StarterBinder b) {
-    //         this.mCurrent = b.current();
-    //         this.mBinder = b;
-    //     }
-
-    //     @Override
-    //     public void onUnbind(ComponentName componentName) {
-    //         this.mBinder = null;
-    //         this.mCurrent = null;
-    //     }
-
-
-    //     public void onStartupBegin() {
-    //         mActivity.runOnUiThread(() -> {
-    //             Intent i = new Intent(mContext, StarterService.class);
-    //             mActivity.startService(i);
-    //             mSSClient.setBinderListener(this);
-    //             mSSClient.onStart();
-    //         });
-    //     }
-
-    //     private Current waitForCurrent(int timeout) {
-    //         final int step = 100; // ms
-    //         for (int ttl = timeout; ttl > 0; ttl -= step) {
-    //             Current cur = this.mCurrent;
-    //             if (cur != null) {
-    //                 return cur;
-    //             }
-    //             Time.sleep(step);
-    //         }
-    //         throw new StarterException("waitForCurrent: timeout");
-    //     }
-
-
-    //     public Current runStartup() {
-
-    //         CurrentWrapper cw = CurrentWrapper.getInstance(this.mContext);
-    //         if (cw.isAppReady()) {
-    //             return this.waitForCurrent(5000);
-    //         }
-    //         cw.initFramework();
-    //         cw.initApp();
-    //         try {
-    //             cw.initUserSession();
-    //         } catch (Exception e) {
-    //             Errors.handleError(this.mContext, e);
-    //         }
-    //         return this.waitForCurrent(5000);
-    //     }
-
-    //     public void onStartupEnd() {
-    //         mActivity.runOnUiThread(() -> {
-    //             mSSClient.onStop();
-    //         });
-    //     }
-    // }
-
-
-    // public Result<Current> boot() {
-    //     try {
-    //         this.mInner.onStartupBegin();
-    //         Current cur = this.mInner.runStartup();
-    //         return new Result<>(cur);
-    //     } catch (Exception e) {
-    //         return new Result<>(e);
-    //     } finally {
-    //         this.mInner.onStartupEnd();
-    //     }
-    // }
+        StarterBinderObserver getObserver() {
+            StarterBinderObserver obs = new StarterBinderObserver();
+            obs.setOnBegin((binderHolder) -> {
+                this.holder.setBinder(binderHolder.getBinder());
+            });
+            return obs;
+        }
+    }
 }
