@@ -5,12 +5,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.bitwormhole.starter</groupId>
+    <groupId>com.bitwormhole.starter4a</groupId>
     <artifactId>libstarter4a</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-r6-snapshot</version>
     <packaging>aar</packaging>
 
-    <description>这是一个伪POM，用于通过 'android-pom-tool' 工具发布 android aar</description>
+    <description>这是一个伪POM，用于通过 'pom4a' 工具发布 android aar</description>
 
     <properties>
         <apt.outputs.aar>build/outputs/aar/libstarter4a-debug.aar</apt.outputs.aar>

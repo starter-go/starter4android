@@ -8,6 +8,7 @@ import android.view.View;
 import com.bitwormhole.starter4a.FrontLife;
 import com.bitwormhole.starter4a.FrontLifeManager;
 import com.bitwormhole.starter4a.ui.boxes.B2View;
+import com.bitwormhole.starter4a.ui.themes.Theme;
 
 
 public class SurfaceContext {
@@ -21,6 +22,7 @@ public class SurfaceContext {
     private FrontLife life;
     private FrontLifeManager lifeManager;
     private Context parent;
+    private Theme theme;
 
     private int width;
     private int height;
@@ -29,6 +31,14 @@ public class SurfaceContext {
 
 
     public SurfaceContext() {
+    }
+
+    public Theme getTheme() {
+        return theme;
+    }
+
+    public void setTheme(Theme theme) {
+        this.theme = theme;
     }
 
     public B2View getView2() {

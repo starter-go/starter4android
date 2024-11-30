@@ -11,8 +11,8 @@ import com.bitwormhole.starter4a.config.ConfigStarter4aComponents;
 final class ThisModule {
 
     private static final String theModuleName = StarterApplication.class.getName();
-    private static final String theModuleVersion = "0.0.0";
-    private static final int theModuleRev = 0;
+    private static final String theModuleVersion = "0.0.2";
+    private static final int theModuleRev = 6;
 
     private static Module theModule;
 
